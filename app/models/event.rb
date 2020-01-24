@@ -4,4 +4,7 @@ class Event < ApplicationRecord
   has_many :events, foreign_key: 'creator_id', class_name: 'Event'
   has_many :user_events
   has_many :attended_events, through: :user_events, source: :event
+
+  scope :upcoming, -> { where('date > ?', Time.zone.now) }
+  scope :past, -> { where('date <= ?', Time.zone.now) }
 end
