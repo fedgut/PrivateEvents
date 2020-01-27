@@ -43,7 +43,7 @@ RSpec.describe 'Session feature', type: :feature do
     visit login_path
 
     click_button 'Log in'
-    expect(page).to have_content 'user not found'
+    expect(page).to have_content 'User not found'
   end
 
   scenario 'login invalid wrong name' do
@@ -52,7 +52,7 @@ RSpec.describe 'Session feature', type: :feature do
 
     fill_in 'name', with: user.name + 'asdfa'
     click_button 'Log in'
-    expect(page).to have_content 'user not found'
+    expect(page).to have_content 'User not found'
   end
 
   scenario 'login invalid wrong id' do
@@ -61,7 +61,7 @@ RSpec.describe 'Session feature', type: :feature do
 
     fill_in 'user_id', with: user.id + 5
     click_button 'Log in'
-    expect(page).to have_content 'user not found'
+    expect(page).to have_content 'User not found'
   end
 
   scenario 'logout' do
