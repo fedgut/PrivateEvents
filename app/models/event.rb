@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  has_many :events, foreign_key: 'creator_id', class_name: 'Event'
+  belongs_to :creator, class_name: 'User'
   has_many :user_events
-  has_many :attended_events, through: :user_events, source: :event
-
+  has_many :attendees, through: :user_events, source: :user
   scope :upcoming, -> { where('date > ?', Time.zone.now) }
   scope :past, -> { where('date <= ?', Time.zone.now) }
+
+  validates :date, presence: true
 end
