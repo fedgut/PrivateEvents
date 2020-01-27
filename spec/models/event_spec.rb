@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  let(:valid_user) { { name: 'mike', email: 'mikew@monsterinc.com', password: 'wasausky' } }
+  let(:valid_user) { { name: 'mike', email: 'mikew@monsterinc.com' } }
   let(:valid_event_without_user) { { name: 'event 1', description: 'a nice description', date: Date.tomorrow } }
   it 'is valid with valid attributes' do
     user = User.create(valid_user)

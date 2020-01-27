@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:valid_user) do
     has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
-    has_x[:password] = 'wasausky'
-    has_x[:password_confirmation] = 'wasausky'
     has_x
   end
 
@@ -24,12 +22,6 @@ RSpec.describe User, type: :model do
   it 'is not valid without name' do
     new_user = User.new(valid_user)
     new_user.name = nil
-    expect(new_user).to_not be_valid
-  end
-
-  it 'is not valid without password' do
-    new_user = User.new(valid_user)
-    new_user.password = nil
     expect(new_user).to_not be_valid
   end
 
@@ -65,12 +57,6 @@ RSpec.describe User, type: :model do
   it 'is not valid when email is duplicated' do
     User.create(valid_user)
     new_user = User.new(valid_user)
-    expect(new_user).to_not be_valid
-  end
-
-  it 'is not valid when password length is < than 6' do
-    new_user = User.new(valid_user)
-    new_user.password = '12345'
     expect(new_user).to_not be_valid
   end
 end

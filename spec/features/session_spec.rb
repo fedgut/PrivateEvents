@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe 'Session feature', type: :feature do
   let(:user_valid) do
     has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
-    has_x[:password] = 'wasausky'
-    has_x[:password_confirmation] = 'wasausky'
     has_x
   end
 

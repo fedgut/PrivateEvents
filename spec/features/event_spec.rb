@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe 'Session feature', type: :feature do
   let(:user_valid) do
     has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
-    has_x[:password] = 'wasausky'
-    has_x[:password_confirmation] = 'wasausky'
     has_x
   end
   let(:event_valid) { { name: 'event 1', description: 'nice desc.', date: Date.tomorrow } }
@@ -61,7 +59,7 @@ RSpec.describe 'Session feature', type: :feature do
     creator = User.create(user_valid)
     event = creator.events.build(event_valid)
     event.save
-    attendee = User.create(name: 'Sulley', email: 'sulley@monsterinc.com', password: 'Sullivan')
+    attendee = User.create(name: 'Sulley', email: 'sulley@monsterinc.com')
     UserEvent.create(user_id: attendee.id, event_id: event.id)
     visit event_path(event)
     expect(page).to have_content attendee.name

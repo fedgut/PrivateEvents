@@ -19,7 +19,7 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST #create and GET #show' do
     it 'creates an event with valid information' do
-      user = User.create(name: 'mike guasausky', email: 'miky2@monsteruniversity.com', password: 'password')
+      user = User.create(name: 'mike guasausky', email: 'miky2@monsteruniversity.com')
       session[:user_id] = user.id
       name_test = 'event1'
       post :create, params: { event: { name: name_test, description: 'nice desc.', date: Date.tomorrow } }

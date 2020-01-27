@@ -13,7 +13,7 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe SessionsHelper, type: :helper do
-  let(:user) { @user = User.create(name: 'mike guasausky', email: 'miky@monsteruniversity.com', password: 'password') }
+  let(:user) { @user = User.create(name: 'mike guasausky', email: 'miky@monsteruniversity.com') }
   describe 'log_in method' do
     it 'log you in' do
       log_in(user)

@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe 'User feature', type: :feature do
   let(:user_valid) do
     has_x = { name: 'mike', email: 'mikew@monsterinc.com' }
-    has_x[:password] = 'wasausky'
-    has_x[:password_confirmation] = 'wasausky'
     has_x
   end
   let(:valid_event_without_user) { { name: 'event 1', description: 'a nice description', date: Date.tomorrow } }
@@ -18,18 +16,15 @@ RSpec.describe 'User feature', type: :feature do
     assert_selector "form[method='post']"
     assert_selector "input[name='user[name]']"
     assert_selector "input[name='user[email]']"
-    assert_selector "input[name='user[password]']"
     assert_selector "input[type='submit']"
     expect do
-      fill_in 'user_name', with: 'Luis Preza'
+      fill_in 'user_name', with: 'Perronio'
       fill_in 'user_email', with: 'user@example.com'
-      fill_in 'user_password', with: 'password'
-      fill_in 'user_password_confirmation', with: 'password'
       click_button 'Create Account'
     end.to change(User, :count).by(1)
     expect(current_path).to eql(user_path(User.last.id))
     expect(page).to have_content('User Created')
-    expect(page).to have_content('Luis Preza')
+    expect(page).to have_content('Perronio')
   end
 
   scenario 'User Profile #show' do
@@ -59,7 +54,7 @@ RSpec.describe 'User feature', type: :feature do
     creator = User.create(user_valid)
     event = creator.events.build(valid_event_without_user)
     event.save
-    attendee = User.create(name: 'Sulley', email: 'sulley@monsterinc.com', password: 'Sullivan')
+    attendee = User.create(name: 'Sulley', email: 'sulley@monsterinc.com')
     UserEvent.create(user_id: attendee.id, event_id: event.id)
     visit user_path(attendee)
     expect(page).to have_content event.name
