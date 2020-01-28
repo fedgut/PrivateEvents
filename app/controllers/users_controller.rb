@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:success] = 'User Created'
       redirect_to user_path(@user)
     else
-      flash.now[:danger] = 'Some Errors in Form'
+      flash.now[:danger] = 'User already exist'
       render 'new'
     end
   end

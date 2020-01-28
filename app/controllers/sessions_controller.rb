@@ -4,19 +4,9 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    @user = if !params[:user_id]&.empty?
-              User.find_by(id: params[:user_id])
-            elsif !params[:name]&.empty?
-              User.find_by(name: params[:name])
-            end
-
-    if @user
-      log_in(@user)
-      redirect_to user_path(@user)
-    else
-      flash.now[:danger] = 'User not found'
-      render 'new'
-    end
+    @user = User.find_by(email: params[:email].downcase)
+    log_in(@user)
+    redirect_to user_path(@user)
   end
 
   def destroy
