@@ -43,7 +43,7 @@ RSpec.describe 'Session feature', type: :feature do
   scenario 'create an event with valid information' do
     user = User.create(user_valid)
     visit login_path
-    fill_in :name, with: user.name
+    fill_in :email, with: user.email
     click_button 'Log in'
 
     visit new_event_path
